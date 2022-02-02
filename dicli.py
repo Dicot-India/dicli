@@ -1,3 +1,4 @@
+from tokenize import group
 import requests
 import hashlib
 import time
@@ -21,7 +22,8 @@ def loginError():
 
 urlEU = "http://api.eu.v-box.net/box-data/api/we-data/login"
 urlBoxs = "http://api.eu.v-box.net/box-data/api/we-data/boxs"
-urlop = "http://api.v-box.net/box-data/api/we-data/realgroups"
+urlGroups = "http://api.eu.v-box.net/box-data/api/we-data/realgroups"
+urlConfig = "http://api.eu.v-box.net/box-data/api/we-data/realcfgs"
 urlParams = { 'alias': alias, 'password': pHashed.hexdigest() }
 payload = { 'alias': alias, 'comid': comid, 'compvtkey': comkey, 'password': pHashed.hexdigest(), 'ts': ts, 'key': screctkey }
 signUnhashed = urlencode(payload)
@@ -48,13 +50,28 @@ boxsJson = rBoxs.json()
 initialBox = str(boxsJson["result"]["list"])
 listStr = initialBox[initialBox.find("[")+1:initialBox.rfind("]")]
 listJson = listStr[listStr.find("[")+1:listStr.rfind("]")]
-boxFinal = listJson[listJson.find("boxId")+8:listJson.rfind("}")]
-print(boxFinal)
-payloadrealtime = { 'boxId': boxFinal, 'comid': comid, 'compvtkey': comkey, 'sid': rjson["result"]["sid"], 'ts': ts, 'key': screctkey }
-opUnhashed = urlencode(payloadrealtime)
-opSign = hashlib.md5(opUnhashed.encode())
-headerop = { 'boxId': boxFinal, 'sid': rjson["result"]["sid"], 'comid': comid, 'compvtkey': comkey, 'ts': ts, 'sign': boxsSign.hexdigest() }
-commonop = { 'common': str(headerop) }
-opparams = {'boxId': boxFinal}
-rop = requests.post(urlop, params=opparams, headers=commonop)
-print(rop.text)
+boxId = listJson[listJson.find("boxId")+8:listJson.rfind("}")]
+groupParams = { 'boxId': boxId }
+payloadGroups = { 'boxId': boxId, 'comid': comid, 'compvtkey': comkey, 'sid': rjson["result"]["sid"], 'ts': ts, 'key': screctkey }
+groupsUnhashed = urlencode(payloadGroups)
+groupsSign = hashlib.md5(groupsUnhashed.encode())
+headerGroups = { 'boxId': boxId, 'sid': rjson["result"]["sid"], 'comid': comid, 'compvtkey': comkey, 'ts': ts, 'sign': groupsSign.hexdigest() }
+commonGroups = { 'common': str(headerGroups) }
+
+rGroups = requests.post(urlGroups, params=groupParams, headers=commonGroups)
+print(rGroups.text)
+groupJson = rGroups.json()
+initialGroup = str(groupJson["result"]["list"])
+groupStr = initialGroup[initialGroup.find("[")+1:initialGroup.rfind("]")]
+groupId = groupStr[groupStr.find("groupId")+10:groupStr.find("}")]
+pageSize = 5
+pageIndex = 2
+configParams = { 'boxId': boxId, 'groupId' : groupId, 'pageSize' : pageSize, 'pageIndex' : pageIndex }
+payloadConfig = {'boxId' : boxId, 'comid' : comid, 'compvtkey': comkey, 'groupId' : groupId, 'pageIndex' : pageIndex, 'pageSize' : pageSize, 'sid': rjson["result"]["sid"], 'ts': ts, 'key': screctkey}
+configUnhashed = urlencode(payloadConfig)
+configSign = hashlib.md5(configUnhashed.encode())
+headerConfig = { 'boxId': boxId, 'groupId' : groupId, 'pageSize' : pageSize, 'pageIndex' : pageIndex, 'sid': rjson["result"]["sid"], 'comid' : comid, 'compvtkey': comkey, 'ts': ts, 'sign' : configSign.hexdigest()}
+commonConfig = { 'common': str(headerConfig) }
+
+rConfig = requests.post(urlConfig, params=configParams, headers=commonConfig)
+print(rConfig.text)
