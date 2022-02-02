@@ -47,5 +47,5 @@ boxsJson = rBoxs.json()
 initialBox = str(boxsJson["result"]["list"])
 listStr = initialBox[initialBox.find("[")+1:initialBox.rfind("]")]
 listJson = listStr[listStr.find("[")+1:listStr.rfind("]")]
-boxFinal = json.loads(json.dumps(listJson))
-print(boxFinal["boxId"])
+boxFinal = listJson[listJson.find("boxId")+8:listJson.rfind("}")]
+print(boxFinal)
