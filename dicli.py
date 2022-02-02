@@ -21,6 +21,7 @@ def loginError():
 
 urlEU = "http://api.eu.v-box.net/box-data/api/we-data/login"
 urlBoxs = "http://api.eu.v-box.net/box-data/api/we-data/boxs"
+urlop = "http://api.v-box.net/box-data/api/we-data/realgroups"
 urlParams = { 'alias': alias, 'password': pHashed.hexdigest() }
 payload = { 'alias': alias, 'comid': comid, 'compvtkey': comkey, 'password': pHashed.hexdigest(), 'ts': ts, 'key': screctkey }
 signUnhashed = urlencode(payload)
@@ -49,3 +50,11 @@ listStr = initialBox[initialBox.find("[")+1:initialBox.rfind("]")]
 listJson = listStr[listStr.find("[")+1:listStr.rfind("]")]
 boxFinal = listJson[listJson.find("boxId")+8:listJson.rfind("}")]
 print(boxFinal)
+payloadrealtime = { 'boxId': boxFinal, 'comid': comid, 'compvtkey': comkey, 'sid': rjson["result"]["sid"], 'ts': ts, 'key': screctkey }
+opUnhashed = urlencode(payloadrealtime)
+opSign = hashlib.md5(opUnhashed.encode())
+headerop = { 'boxId': boxFinal, 'sid': rjson["result"]["sid"], 'comid': comid, 'compvtkey': comkey, 'ts': ts, 'sign': boxsSign.hexdigest() }
+commonop = { 'common': str(headerop) }
+opparams = {'boxId': boxFinal}
+rop = requests.post(urlop, params=opparams, headers=commonop)
+print(rop.text)
