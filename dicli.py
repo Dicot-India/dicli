@@ -6,6 +6,7 @@ import json
 import sys
 from urllib.parse import urlencode
 
+
 print("Welcome to DIcot CLI! Initiating login process...\n")
 
 alias = input("Alias: ")
