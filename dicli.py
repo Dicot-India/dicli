@@ -51,7 +51,8 @@ boxsJson = rBoxs.json()
 initialBox = str(boxsJson["result"]["list"])
 listStr = initialBox[initialBox.find("[")+1:initialBox.rfind("]")]
 listJson = listStr[listStr.find("[")+1:listStr.rfind("]")]
-boxId = listJson[listJson.find("boxId")+8:listJson.rfind("}")]
+#boxId = listJson[listJson.find("boxId")+8:listJson.rfind("}")]
+boxId = input("Enter your desired boxId: ")
 groupParams = { 'boxId': boxId }
 payloadGroups = { 'boxId': boxId, 'comid': comid, 'compvtkey': comkey, 'sid': rjson["result"]["sid"], 'ts': ts, 'key': screctkey }
 groupsUnhashed = urlencode(payloadGroups)
@@ -64,7 +65,16 @@ print(rGroups.text)
 groupJson = rGroups.json()
 initialGroup = str(groupJson["result"]["list"])
 groupStr = initialGroup[initialGroup.find("[")+1:initialGroup.rfind("]")]
-groupId = groupStr[groupStr.find("groupId")+10:groupStr.find("}")]
+#groupId = groupStr[groupStr.find("groupId")+10:groupStr.find("}")]
+print("The groups list is as follows:")
+boxList = str(groupJson["result"])
+boxListJson = groupJson["result"]
+print(boxList)
+print("The type of object is ", type(boxList))
+
+for group in boxListJson["list"]:
+    print(group["groupName"], group["groupId"])
+groupId = input("Enter desired groupId: ")
 pageSize = 5
 pageIndex = 2
 configParams = { 'boxId': boxId, 'groupId' : groupId, 'pageSize' : pageSize, 'pageIndex' : pageIndex }
@@ -76,3 +86,4 @@ commonConfig = { 'common': str(headerConfig) }
 
 rConfig = requests.post(urlConfig, params=configParams, headers=commonConfig)
 print(rConfig.text)
+
