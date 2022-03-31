@@ -76,7 +76,7 @@ for group in boxListJson["list"]:
     print(group["groupName"], group["groupId"])
 groupId = input("Enter desired groupId: ")
 pageSize = 5
-pageIndex = 2
+pageIndex = 1
 configParams = { 'boxId': boxId, 'groupId' : groupId, 'pageSize' : pageSize, 'pageIndex' : pageIndex }
 payloadConfig = {'boxId' : boxId, 'comid' : comid, 'compvtkey': comkey, 'groupId' : groupId, 'pageIndex' : pageIndex, 'pageSize' : pageSize, 'sid': rjson["result"]["sid"], 'ts': ts, 'key': screctkey}
 configUnhashed = urlencode(payloadConfig)
@@ -85,5 +85,10 @@ headerConfig = { 'boxId': boxId, 'groupId' : groupId, 'pageSize' : pageSize, 'pa
 commonConfig = { 'common': str(headerConfig) }
 
 rConfig = requests.post(urlConfig, params=configParams, headers=commonConfig)
+
+# print(urlConfig)
+# print(configParams)
+# print(commonConfig)
+
 print(rConfig.text)
 
