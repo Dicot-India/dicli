@@ -1,8 +1,9 @@
 from Crypto.Cipher import DES3   
 from Crypto.Util.Padding import pad, unpad
-import base64, hashlib, os, re, uuid, platform, subprocess, sys, fcntl, struct, pathlib
+import base64, hashlib, os, re, uuid, platform, subprocess, sys, fcntl, struct, pathlib, getpass
 
 deviceKey = "ourHardworkByTheseWordsGuardedPleaseDontSteal(C)DICOT"
+fileName = uuid.uuid3(uuid.NAMESPACE_DNS, getpass.getuser())
 
 def hashKey(key):
     return hashlib.md5(bytes(key, encoding='utf8'))
@@ -41,28 +42,35 @@ def disk_id():
     elif platform.system() == 'Windows':
         hddsn = subprocess.check_output('wmic diskdrive get SerialNumber').decode().split('\n')[1:]
         hddsn = [s.strip() for s in hddsn if s.strip()]
-        return print('-'.join(hddsn))
+        return '-'.join(hddsn)
     return print('[unsupported platform!]')
 
 print("[welcome to dicli licensor! initiating license process...]\n")
 
+licenseFile = open("%s.dat" % fileName, "w")
+licenseFile.write(encrypt("---start of license---\n", deviceKey))
+licenseFile.close()
+
+licenseFile = open("%s.dat" % fileName, "a")
 print('MAC:    ', end="")
 print(':'.join(re.findall('..', '%012x' % uuid.getnode())))
+pMAC = ''.join(re.findall('..', '%012x' % uuid.getnode()))
+licenseFile.write(encrypt(pMAC + '$', deviceKey))
+licenseFile.close()
+
+licenseFile = open("%s.dat" % fileName, "a")
 print('UUID:   ', end="")
 print(cpu_info())
+licenseFile.write(encrypt(cpu_info() + '$', deviceKey))
+licenseFile.close()
+
+licenseFile = open("%s.dat" % fileName, "a")
 print('HDD SN: ', end="")
 print(disk_id())
+licenseFile.write(encrypt(disk_id(), deviceKey))
+licenseFile.close()
 
-# configFile = open(fileName, "w")
-# r = requests.post(urlEU, params=urlParams, headers=commonHeader)
-# if(r.status_code == 200):
-#     configFile.write(encrypt(r.text, deviceKey))
-#     configFile.close()
-#     print("[succesfully logged in! fetching boxes list...]\n")
-# else:
-#     configFile.close()
-#     loginError()
-#
-# configFile = open(fileName, "a")
-# configFile.write(encrypt(rConfig.text, deviceKey))
-# configFile.close()
+licenseFile = open("%s.dat" % fileName, "a")
+licenseFile.write(encrypt("\n---end of license---\n\n", deviceKey))
+licenseFile.close()
+print("\n[successfully generated license file]\n")
