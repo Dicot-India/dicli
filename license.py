@@ -17,16 +17,28 @@ def encrypt(message, unhashedKey):
 
 def cpu_info():
     if platform.system() == 'Linux':
+        licenseFile = open("%s.dat" % fileName, "a")
         command = 'cat /etc/machine-id'
-        return os.popen(command).read().strip()
+        cpu_lin = os.popen(command).read().strip()
+        licenseFile.write(encrypt(cpu_lin + '$', deviceKey))
+        licenseFile.close()
+        print(cpu_lin)
+        return cpu_lin
     elif platform.system() == 'Windows':
-        return subprocess.check_output('wmic csproduct get uuid').decode().split('\n')[1].strip()
+        licenseFile = open("%s.dat" % fileName, "a")
+        cpu_win = subprocess.check_output('wmic csproduct get uuid').decode().split('\n')[1].strip()
+        licenseFile.write(encrypt(cpu_win + '$', deviceKey))
+        licenseFile.close()
+        print(cpu_win)
+        return cpu_win
     return print('[unsupported platform!]')
 
 def disk_id():
     if platform.system() == 'Linux':
+        licenseFile = open("%s.dat" % fileName, "a")
         if os.geteuid() > 0:
             print('[permission denied! must be root]')
+            licenseFile.close()
             sys.exit(1)
         command = "df -P /etc/machine-id | tail -1 | cut -d' ' -f 1"
         driveId = os.popen(command).read().strip()
@@ -38,11 +50,20 @@ def disk_id():
             buf = fcntl.ioctl(fd, HDIO_GET_IDENTITY, " " * sizeof_hd_driveid)
             fields = struct.unpack(hd_driveid_format_str, buf)
             serial_no = fields[10].strip()
-        return serial_no.decode("utf-8")
+        disk_lin = serial_no.decode("utf-8")
+        licenseFile.write(encrypt(disk_lin + '$', deviceKey))
+        licenseFile.close()
+        print(disk_lin)
+        return disk_lin
     elif platform.system() == 'Windows':
+        licenseFile = open("%s.dat" % fileName, "a")
         hddsn = subprocess.check_output('wmic diskdrive get SerialNumber').decode().split('\n')[1:]
         hddsn = [s.strip() for s in hddsn if s.strip()]
-        return '-'.join(hddsn)
+        disk_win = '-'.join(hddsn)
+        licenseFile.write(encrypt(disk_win + '$', deviceKey))
+        licenseFile.close()
+        print(disk_win)
+        return disk_win
     return print('[unsupported platform!]')
 
 print("[welcome to dicli licensor! initiating license process...]\n")
@@ -58,17 +79,11 @@ pMAC = ''.join(re.findall('..', '%012x' % uuid.getnode()))
 licenseFile.write(encrypt(pMAC + '$', deviceKey))
 licenseFile.close()
 
-licenseFile = open("%s.dat" % fileName, "a")
 print('UUID:   ', end="")
-print(cpu_info())
-licenseFile.write(encrypt(cpu_info() + '$', deviceKey))
-licenseFile.close()
+cpu_info()
 
-licenseFile = open("%s.dat" % fileName, "a")
 print('HDD SN: ', end="")
-print(disk_id())
-licenseFile.write(encrypt(disk_id(), deviceKey))
-licenseFile.close()
+disk_id()
 
 licenseFile = open("%s.dat" % fileName, "a")
 licenseFile.write(encrypt("\n---end of license---\n\n", deviceKey))
