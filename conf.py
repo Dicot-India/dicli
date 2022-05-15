@@ -1,5 +1,6 @@
 from Crypto.Cipher import DES3
 from Crypto.Util.Padding import pad, unpad
+from pathlib import Path
 import hashlib
 import base64
 import os
@@ -16,6 +17,13 @@ def decrypt(message, unhashedKey):
     decryptedText = unpad(decipheredText, 8, style='pkcs7').decode('UTF8')
     return decryptedText
 
-print("[reading dicli.conf]\n")
-fp = open("dicli.conf", "r")
-print(decrypt(fp.read(), deviceKey))
+path_to_file = 'dicli.conf'
+path = Path(path_to_file)
+
+print("[welcome to dicli config reader!]\n")
+if path.is_file():
+    print("[reading dicli.conf]\n")
+    fp = open("dicli.conf", "r")
+    print(decrypt(fp.read(), deviceKey))
+else:
+    print('\033[91m' + '[dicli.conf not found!]\n' + '\033[0m')
