@@ -1,6 +1,6 @@
 from Crypto.Cipher import DES3   
 from Crypto.Util.Padding import pad, unpad
-import base64, hashlib, os, re, uuid, platform
+import base64, hashlib, os, re, uuid, platform, subprocess
 
 deviceKey = "ourHardworkByTheseWordsGuardedPleaseDontSteal(C)DICOT"
 
@@ -16,16 +16,17 @@ def encrypt(message, unhashedKey):
 
 def cpu_info():
     if platform.system() == 'Linux':
-        command = 'cat /proc/cpuinfo'
+        command = 'cat /etc/machine-id'
         return os.popen(command).read().strip()
     elif platform.system() == 'Windows':
-        return platform.processor()
+        return subprocess.check_output('wmic csproduct get uuid').decode().split('\n')[1].strip()
     return print('[unsupported platform!]')
 
 print("[welcome to dicli licensor! initiating license process...]\n")
 
-print('MAC: ', end="")
+print('MAC:  ', end="")
 print(':'.join(re.findall('..', '%012x' % uuid.getnode())))
+print('UUID: ', end="")
 print(cpu_info())
 
 # configFile = open(fileName, "w")
