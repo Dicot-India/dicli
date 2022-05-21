@@ -1,13 +1,26 @@
-import platform, os
+import ctypes, platform, os, sys, subprocess
 
 def dicliLinux():
-    print('\n[running on linux]\n')
+    print('\n[setting up for linux]')
+    print('[checking permissions]')
+    if os.geteuid() > 0:
+        print('[permission denied! must be root]\n')
+        sys.exit(1)
+
+    os.system("cd dicli")
+    subprocess.call(['bash', './lin.sh'])
+
     print('[end of install - you may invoke the program by typing ' + '\033[1m' + 'dicli' + '\033[0m' + ' at the command line]')
 
 def dicliWindows():
-    print('\n[running on windows]\n')
+    print('\n[setting up for windows]\n')
 
 print('[welcome to dicli installer! initiating install procedure]\n')
+
+print('[fetching installation files]\n')
+os.system("git clone https://github.com/dicot-india/dicli")
+os.system("cd dicli")
+
 if platform.system()  == 'Linux':
     dicliLinux()
 elif platform.system() == 'Windows':
