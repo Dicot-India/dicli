@@ -7,8 +7,7 @@ def dicliLinux():
         print('[permission denied! must be root]\n')
         sys.exit(1)
 
-    os.system("cd dicli")
-    subprocess.call(['bash', './lin.sh'])
+    subprocess.call(['bash', './dicli/lin.sh'])
 
     print('[end of install - you may invoke the program by typing ' + '\033[1m' + 'dicli' + '\033[0m' + ' at the command line]')
 
