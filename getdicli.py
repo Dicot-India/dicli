@@ -1,5 +1,12 @@
 import ctypes, platform, os, sys, subprocess
 
+def isAdmin():
+    try:
+        is_admin = (os.getuid() == 0)
+    except AttributeError:
+        is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
+    return is_admin
+
 def dicliLinux():
     print('\n[setting up for linux]')
     print('[checking permissions]')
@@ -12,13 +19,19 @@ def dicliLinux():
     print('[end of install - you may invoke the program by typing ' + '\033[1m' + 'dicli' + '\033[0m' + ' at the command line]')
 
 def dicliWindows():
-    print('\n[setting up for windows]\n')
+    print('\n[setting up for windows]')
+    print('[checking permissions]')
+    if isAdmin():
+        subprocess.call([r'dicli\win.bat'])
+    else:
+        print('[permission denied! must be admin]\n')
+        sys.exit(1)
+
 
 print('[welcome to dicli installer! initiating install procedure]\n')
 
 print('[fetching installation files]\n')
 os.system("git clone https://github.com/dicot-india/dicli")
-os.system("cd dicli")
 
 if platform.system()  == 'Linux':
     dicliLinux()
