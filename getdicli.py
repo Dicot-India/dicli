@@ -23,6 +23,7 @@ def dicliWindows():
     print('[checking permissions]')
     if isAdmin():
         subprocess.call([r'dicli\win.bat'])
+        print('\n[installation successful! after refreshing environment variables, run dicli at the command line to invoke the program]')
     else:
         print('[permission denied! must be admin]\n')
         sys.exit(1)
