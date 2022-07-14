@@ -1,5 +1,383 @@
-test.txt
--- --
-----
-line 4
-end
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Dicot Innovations Private Limited</title>
+    <link rel="stylesheet" href="/CSS/home.css">
+    <meta name="keywords"
+        content="Vision C, VisionC, VGraphic,vgraphic, SCADA, MIS, DAS, scada, mis, das, Dicot, Dicot India, visonc download, free, visionc SCADA, dicot SCADA">
+    <meta name="description"
+        content="">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sora:wght@700&display=swap"
+            rel="stylesheet">
+    <link rel="icon" href="./Assets/images/Favicon.png">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MGYD4M8SC8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MGYD4M8SC8');
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-179640044-2');
+    </script>
+    <!-- Google Tag Manager -->
+
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img class="logoimg" data-src="Assets/images/Logo.svg" alt="Dicot" />
+        </div>
+        <div class="nav-items">
+            <span><a href="#">Home</a></span>
+            <span><a href="about.html">About</a></span>
+            <span><a href="products.html">Products</a></span>
+            <span><a href="contact.html">Contact</a></span>
+            <span><a href="https://blog.dicot.tech">Blog</a></span>
+        </div>
+        <button class="hamburger" onclick="showmenu()">
+            <img data-src="Assets/images/hamburger.png"/>
+        </button>
+    </nav>
+    <div class="mobmenu" id="mobmenu">
+        <span><a href="#">Home</a></span>
+        <span><a href="about.html">About</a></span>
+        <span><a href="products.html">Products</a></span>
+        <span><a href="contact.html">Contact</a></span>
+        <span><a href="https://blog.dicot.tech">Blog</a></span>
+    </div>
+    <div class="banner">
+        <span class="ProductName">
+            VISION C
+        </span>
+        <h1 class="title">
+            REVOLUTIONIZING INDUSTRY
+        </h1>
+        <h2 class="tagline">
+            WITH CLEAN SIMPLE AND POWERFUL SOFTWARES
+        </h2>
+        <img class="computer" src="Assets/images/Computer.png" alt="">
+    </div>
+
+    <div class="container-4">
+        <img class="chartimg" data-src="Assets/images/Ch3.svg" alt="">
+        <img class="chartimg" data-src="Assets/images/Ch2.svg" alt="">
+        <img class="chartimg" data-src="Assets/images/Ch1.svg" alt="">
+    </div>
+
+    <div class="container-5">
+        <h2 class="container-5-title">Why Us?</h2>
+
+        <div class="container-5-data">
+
+            <img class="container-5-data-imager" data-src="Assets/images/worker.svg" alt="">
+            <h3 class="container-5-data-titler">
+                Simple
+            </h3>
+            <p class="container-5-data-subtr">
+                Our products are designed to be operated by unskilled workers
+            </p>
+
+        </div>
+
+        <div class="container-5-data">
+            <img class="container-5-data-imagel" data-src="Assets/images/IoT.svg" alt="">
+            <h4 class="container-5-data-titlel">
+                Up-To-Date
+            </h4>
+            <p class="container-5-data-subtl">
+                We provide updates fast enabling you to use latest tech
+            </p>
+        </div>
+
+        <div class="container-5-data">
+            <img class="container-5-data-imager" data-src="Assets/images/lock locked.svg" alt="">
+
+            <h4 class="container-5-data-titler">
+                Secure
+            </h4>
+            <p class="container-5-data-subtr">
+                We don't take your data, In-fact, we encrypt it
+            </p>
+        </div>
+
+        <div class="container-5-data">
+            <img class="container-5-data-imagel" data-src="Assets/images/Conference call.svg" alt="">
+            <h4 class="container-5-data-titlel">
+                Quick Support
+            </h4>
+            <p class="container-5-data-subtl">
+                Quick and free remote support for any issues you have
+            </p>
+        </div>
+
+        <div class="container-5-data">
+            <img class="container-5-data-imager" data-src="Assets/images/brain.svg" alt="">
+            <h4 class="container-5-data-titler">
+                Hardware Consultation
+            </h4>
+            <p class="container-5-data-subtr">
+                We not only help you out with softwares, we can refer you to a lot of trusted hardware providers
+            </p>
+        </div>
+    </div>
+
+    <div class="container-6">
+        <h2 class="container-6-title">Clients Opinion</h2>
+        <div class="qcontainer">
+            <div class="container-6-sub">
+                <div class="c6-sub-top">
+                    <div class="cphoto">
+                        <img data-src="Assets/images/niket.jpeg"/>
+                    </div>
+                    <span class="container-6-quote">
+                        Awesome features. Simple to
+                        use softwares. Recommended
+                        especially for small
+                        businesses.
+                    </span>
+                </div>
+                <div>
+                    <span class="container-6-CName">
+                        Niket Gorakhiya
+                    </span>
+                    <span class="container-6-pos">
+                        Director, Micon Automation Systems
+                    </span>
+                </div>
+            </div>
+
+            <div class="container-6-sub">
+                <div class="c6-sub-top">
+                    <div class="cphoto">
+                        <img data-src="Assets/images/dummy-image.jpg" />
+                    </div>
+                    <span class="container-6-quote">
+                        Don't know any other product as quick to setup as Vision C! Not only that, it is extremely easy to use.
+                    </span>
+                </div>
+                <div>
+                    <span class="container-6-CName">
+                        Mayank Dantwala
+                    </span>
+                    <span class="container-6-pos">
+                        Control Equipments & Marketing Co.
+                    </span>
+                </div>
+            </div>
+
+            <div class="container-6-sub">
+                <div class="c6-sub-top">
+                    <div class="cphoto">
+                        <img data-src="Assets/images/raj.jpg" />
+                    </div>
+                    <span class="container-6-quote">
+                        Dicot has best in class softwares at the best possible prices. It was hard be believe at first but now I refer anyone to them confidently.
+                    </span>
+                </div>
+                <div>
+                    <span class="container-6-CName">
+                        Raj Kanabar
+                    </span>
+                    <span class="container-6-pos">
+                        Director, Radical TechArt Solution
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-7">
+        <h2 class="container-7-title">
+            Newsletter
+        </h2>
+        <button class="JoinBtn" onclick="signup()">
+            Join
+        </button>
+        <span class="container-7-text">To get the latest news from us, join our newsletter</span>
+
+    </div>
+
+    <footer class="footer">
+        <div class="footer-part1">
+            <div class="footer-part1-s1">
+                <img data-src="Assets/images/dicot.svg" alt="">
+                <div class="footer-part1-data3-2">
+                    <div class="social">
+                        <a href="https://twitter.com/dicot_tech" target="_blank"><img data-src="Assets/images/TwitterButtoon.svg"
+                                alt="Twitter"></a>
+                        <a href="https://facebook.com/tech.dicot" target="_blank"><img data-src="Assets/images/FacebookButton.svg"
+                                alt="Facebook"></a>
+                        <a href="https://linkedin.com/company/dicot-tech" target="_blank"><img data-src="Assets/images/LinkedInButton.svg"
+                                alt="Linkedin"></a>
+                        <a href="https://instagram.com/dicot.tech" target="_blank"><img data-src="Assets/images/InstaButton.svg"
+                                alt="Instagram"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-part1-s2">
+
+                <h3 class="footer-s2-title">
+                    Contact Us
+                </h3>
+                <div class="compdetail">
+                    <img class="footer-detailicon" data-src="Assets/images/Location.svg" alt="">
+                    <div class="footer-s2-detailtext">
+                        Dicot Innovations Pvt. Ltd.<br />
+                        28, Earth Bungalows,<br />
+                        Nr. Titanium tower, Corporate road,<br />
+                        Prahladnagar, Ahmedabad,<br />
+                        Gujarat, India<br />
+                        Pincode: 380015
+                    </div>
+                </div>
+
+
+                <div class="compdetail">
+                    <img class="footer-detailicon" data-src="Assets/images/Mail.svg" alt="">
+                    <div class="footer-s2-detailtext"><a href="mailto:hello@dicot.in">hello@dicot.in</a></div>
+                </div>
+
+
+                <div class="compdetail">
+                    <img class="footer-detailicon" data-src="Assets/images/Call.svg" alt="">
+                    <div class="footer-s2-detailtext"><a href="tel:+919328006290">+91-932-800-6290</a></div>
+                </div>
+            </div>
+
+            <div class="footer-part1-s3">
+                <h3 class="footer-s3-title">
+                    Quick Links
+                </h3>
+                <div class="footer-qlink">
+                    <a href="#">Career</a>
+                </div>
+                <div class="footer-qlink">
+                    <a href="products.html">Downloads</a>
+                </div>
+                <div class="footer-qlink">
+                    <a href="#">Tutorials</a>
+                </div>
+                <div class="footer-qlink">
+                    <a href="#">News</a>
+                </div>
+                <div class="footer-qlink">
+                    <a href="http://vision-web.tech">Vision Web</a>
+                </div>
+            </div>
+            <div class="footer-part1-s4">
+                <a class="twitter-timeline" data-width="300" data-height="400" data-theme="dark"
+                    href="https://twitter.com/dicot_tech?ref_src=twsrc%5Etfw">Tweets by dicot_tech</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </div>
+
+        <div class="footer-part2">
+            <div class="footer-rights">
+                Copyright © 2022 dicot.in and dicot.tech. All Rights Reserved. <a href="privacypolicy.html">Privacy Policy &nbsp;|</a><a
+                    href="TandC.html">&nbsp;Terms&nbsp;|</a><a href="randc.html">&nbsp;Refund Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="btt" id="btt" onclick="topFunction()">
+        <img data-src="Assets/images/BTTButtop.svg"/>
+    </button>
+
+    <script>
+        function signup()
+        {            
+            window.open('http://eepurl.com/hUzsQf', '_blank');
+        }
+        var mybutton = document.getElementById("btt");
+        var mobmenu = document.getElementById("mobmenu");
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        
+        function showmenu(){
+            if(mobmenu.style.display == "none")
+            {
+                mobmenu.style.display = "flex";
+            }
+            else 
+            {
+                mobmenu.style.display = "none"
+            }
+        }
+    </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/626530d87b967b11798c3c2b/1g1dkdkc9';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    <script>
+            (function () {
+                var elements = document.querySelectorAll('img[data-src]');
+                var index = 0;
+                var lazyLoad = function () {
+                    if (index >= elements.length) return;
+                    var item = elements[index];
+                    if ((this.scrollY + this.innerHeight) > item.offsetTop) {
+                        var src = item.getAttribute("data-src");
+                        item.src = src;
+                        item.addEventListener('load', function () {
+                            item.removeAttribute('data-src');
+                        });
+                        index++;
+                        lazyLoad();
+                    }
+                };
+                var init = function () {
+                    window.addEventListener('scroll', lazyLoad);
+                    lazyLoad();
+                };
+                return init();
+            })();
+    </script>
+
+
+</body>
+
+</html>
